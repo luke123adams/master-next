@@ -1,8 +1,10 @@
 'use client'
 
 import { FC, useEffect, useState } from 'react'
-import {type Language} from 'prism-react-renderer'
+import Highlight, {defaultProps, type Language} from 'prism-react-renderer'
 import { useTheme } from 'next-themes'
+import darkTheme from 'prism-react-renderer/themes/nightOwl'
+import lightTheme from 'prism-react-renderer/themes/nightOwlLight'
 
 interface CodeProps {
  code: string
@@ -33,11 +35,34 @@ const Code: FC<CodeProps> = ({
                         clearInterval(intervalId)
                     }
                 }, 15)
+
+                return () => clearInterval(intervalId)
             }, animationDelay || 150)
         }
-    }, [])
+    }, [code, show, animated, animationDelay])
 
- return <div>Code</div>
+    // number of lines
+    const lines = text.split(/\r\n|\r|\n/).length
+
+    const theme = applicationTheme === 'light' ? lightTheme : darkTheme
+
+ return (<Highlight
+ {...defaultProps}
+ code={text}
+ language={language}
+ theme={theme}>
+    {({className, tokens, getLineProps, getTokenProps }) => (
+    <pre
+     className={
+        className + 
+        'transition-all w-fit bg-transparent duration-100 py-0 no-scrollbar'
+        }
+        style={{
+            maxHeight: show ? lines * 24 : 0,
+        }}></pre>
+    )}
+ </Highlight>
+ )
 }
 
 export default Code
