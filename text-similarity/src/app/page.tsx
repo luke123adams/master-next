@@ -27,6 +27,18 @@ export default function Home() {
           </Link>
           .
         </Paragraph>
+
+        <div className='relative w-full max-w-lg lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute'>
+          <Image 
+          priority
+          className='img-shadow' 
+          quality={100} 
+          style={{objectFit: 'contain'}} 
+          fill
+          src='/typewriter.png'
+          alt='typewriter'
+          />
+        </div>
         </div> 
       </div>    
   </div>

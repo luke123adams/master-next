@@ -1,9 +1,9 @@
 "use client"
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/DropdownMenu'
 import { useTheme } from 'next-themes'
 import { FC } from 'react'
-import Button from '@/ui/button'
+import Button from '@/ui/Button'
 import { Laptop, Moon, Sun } from 'lucide-react'
 import { Icons } from './Icons'
 
@@ -29,7 +29,7 @@ const ThemeToggle: FC<ThemeToggleProps> = ({}) => {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={()=>setTheme('dark')}>
             <Icons.Moon className='mr-2 h-4 w-4'/>
-            <span>dark</span>
+            <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={()=>setTheme('system')}>
             <Laptop className='mr-2 h-4 w-4'/>
