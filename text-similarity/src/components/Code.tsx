@@ -59,7 +59,23 @@ const Code: FC<CodeProps> = ({
         }
         style={{
             maxHeight: show ? lines * 24 : 0,
-        }}></pre>
+            opacity: show ? 1: 0
+        }}>
+            {tokens.map((line, i) => {
+                // eslint-disable-next-line no-unused-vars 
+                const {key, ...rest} = getLineProps({line, key: i})
+                return (
+                    <div key={`line-${i}`} style={{position: 'relative'}}
+                    {...rest}>
+                        {line.map((token, index) => {
+                            // eslint-disable-next-line no-unused-vars
+                            const {key, ...props} = getTokenProps({token, i})
+                            return <span key={index} {...props}></span>
+                        })}
+                    </div>
+                )
+            })}
+        </pre>
     )}
  </Highlight>
  )
